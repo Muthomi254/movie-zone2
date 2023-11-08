@@ -1,32 +1,41 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-function DeleteMovies() {
+const DeleteMovieForm = ({ onDelete }) => {
+  const [movieTitle, setMovieTitle] = useState('');
 
-  const [movieTitle, setMovieTitle] = useState()
+  const handleDelete = () => {
+    // Use fetch or your preferred method to delete the movie on the server
+    fetch(`http://localhost:4000/movies/${movieTitle}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        onDelete(movieTitle); // Assuming the server returns the deleted movie title
+      })
+      .catch((error) => console.error('Error deleting movie:', error));
+  };
+
   return (
-    <div className="container">
-      Delete Movies
-      <div>
-        <div className="form-group">
-          <label>Series_Title:</label>
-          <input
-            className="form-control"
-            type="text"
-            value={movie.Series_Title}
-            aria-label="Movie_Title"
-            readOnly
-          />
-          <button type="button" class="btn btn-outline-danger">
-            Delete
-          </button>
-          ;
-        </div>
+    <div>
+      <h3>Delete Movie</h3>
+      <div className="form-group">
+        <label>Series Title:</label>
+        <input
+          className="form-control"
+          type="text"
+          value={movieTitle}
+          onChange={(e) => setMovieTitle(e.target.value)}
+        />
+        <button
+          type="button"
+          className="btn btn-outline-danger"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
-}
+};
 
-export default DeleteMovies
-
-
+export default DeleteMovieForm;
