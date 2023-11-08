@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function NoPages() {
   return (
-    <div>The Page Doesn't Exist</div>
+    <div>This Page Doesn't Exist</div>
   )
 }

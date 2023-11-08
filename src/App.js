@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
-import './App.css';
-import NavBar from './component/NavBar';
-import MovieDisplay from './pages/MovieDisplay';
+// App.js
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './layout/Layout';
+import EditMovies from './pages/EditMovies';
+import NoPages from './pages/NoPages';
+import WatchList from './pages/WatchList';
 
-function App() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
-
+export default function App() {
   return (
-    <div className="App">
-      <NavBar onSelectCategory={handleCategorySelect} onSearch={handleSearch} />
-      <MovieDisplay
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="/watchlist" element={<WatchList />} />
+        <Route path="/editmovies" element={<EditMovies />} />
+        <Route path="*" element={<NoPages />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

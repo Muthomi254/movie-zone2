@@ -1,6 +1,7 @@
-import React from 'react';
-import Categories from './Categories';
-import { useState } from 'react';
+// MovieNavbar.js
+import React, { useState } from 'react';
+import Categories from '../component/Categories';
+import { Link } from 'react-router-dom';
 
 const MovieNavbar = ({ onSelectCategory, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,13 +10,14 @@ const MovieNavbar = ({ onSelectCategory, onSearch }) => {
     e.preventDefault();
     onSearch(searchTerm);
   };
+
   return (
     <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand fw-bolder" href="/">
+        <Link className="navbar-brand fw-bolder" to="/">
           <span className="text-light">Movie </span>
           <span className="text-warning">Zone</span>
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,23 +32,19 @@ const MovieNavbar = ({ onSelectCategory, onSearch }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
-                className="nav-link active text-light"
-                aria-current="page"
-                href="#"
-              >
+              <Link className="nav-link active text-light" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="#">
+              <Link className="nav-link text-light" to="/watchlist">
                 Watch List
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="#">
+              <Link className="nav-link text-light" to="/editmovies">
                 Edit Movies
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
