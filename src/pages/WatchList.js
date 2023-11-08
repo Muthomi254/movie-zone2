@@ -1,7 +1,12 @@
 import React from 'react'
+import NavBar from '../layout/NavBar'
 
 export default function WatchList() {
   return (
-    <div>WatchList</div>
-  )
+    <div>
+      <div>
+        <NavBar />
+      </div>
+    </div>
+  );
 }

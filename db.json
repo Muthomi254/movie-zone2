@@ -1,5 +1,5 @@
 {
-    "movies" :[
+  "movies": [
     {
       "Poster_Link": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX67_CR0,0,67,98_AL_.jpg",
       "Series_Title": "The Shawshank Redemption",
@@ -3619,6 +3619,4 @@
       "Gross": 3492754
     }
   ]
-  }
-
- 
+}

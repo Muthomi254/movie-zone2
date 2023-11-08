@@ -43,11 +43,7 @@ const MovieDisplay = ({ selectedCategory, searchTerm }) => {
           </div>
         ))}
       </div>
-      <div>
-        {/* Add Link for navigation */}
-        <Link to="/editmovies">Edit Movies</Link>
-        <Link to="/watchlist">Watch List</Link>
-      </div>
+     
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddMovies from '../component/AddMovies';
 import UpdateMovies from '../component/UpdateMovies';
 import DeleteMovies from '../component/DeleteMovies';
+import NavBar from '../layout/NavBar';
 
 const EditMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -40,32 +41,36 @@ const EditMovies = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <AddMovies onAdd={handleAdd} />
+    <div>
+      <NavBar />
+
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <AddMovies onAdd={handleAdd} />
+          </div>
+          <div className="col-md-6">
+            {selectedMovie ? (
+              <>
+                <UpdateMovies movie={selectedMovie} onUpdate={handleUpdate} />
+                <DeleteMovies movie={selectedMovie} onDelete={handleDelete} />
+              </>
+            ) : (
+              <p>Select a movie to edit or delete.</p>
+            )}
+          </div>
         </div>
-        <div className="col-md-6">
-          {selectedMovie ? (
-            <>
-              <UpdateMovies movie={selectedMovie} onUpdate={handleUpdate} />
-              <DeleteMovies movie={selectedMovie} onDelete={handleDelete} />
-            </>
-          ) : (
-            <p>Select a movie to edit or delete.</p>
-          )}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          <h2>All Movies</h2>
-          <ul>
-            {movies.map((movie) => (
-              <li key={movie.Series_Title} onClick={() => handleEdit(movie)}>
-                {movie.Series_Title}
-              </li>
-            ))}
-          </ul>
+        <div className="row">
+          <div className="col-md-12">
+            <h2>All Movies</h2>
+            <ul>
+              {movies.map((movie) => (
+                <li key={movie.Series_Title} onClick={() => handleEdit(movie)}>
+                  {movie.Series_Title}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

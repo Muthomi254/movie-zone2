@@ -20,20 +20,19 @@ function Layout() {
 
   return (
     <div className="Layout">
-      <NavBar onSelectCategory={handleCategorySelect} onSearch={handleSearch} />
+      <NavBar onSelectCategory={handleCategorySelect} onSearch={handleSearch}/>
+      
       <MovieDisplay
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
       />
       <div id="main-container" className=" container mx auto">
-        <div>
-          <Link to="/editmovies">Edit Movies</Link>
-          <Link to="/watchlist">Watch List</Link>
-        </div>
+        {/*  */}
         <Outlet />
       </div>
       <Footer />
-    </div>
+       </div>
+    
   );
 }
 
