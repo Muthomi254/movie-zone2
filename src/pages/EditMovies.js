@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AddMovies from './component/AddMovies';
-import UpdateMovies from './component/UpdateMovies';
-import DeleteMovies from './component/DeleteMovies';
+import AddMovies from '../component/AddMovies';
+import UpdateMovies from '../component/UpdateMovies';
+import DeleteMovies from '../component/DeleteMovies';
 
 const EditMovies = () => {
   const [movies, setMovies] = useState([]);

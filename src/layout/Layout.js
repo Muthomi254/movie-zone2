@@ -1,8 +1,8 @@
 // Layout.js
 import React, { useState } from 'react';
-import './Layout.css';
+// import './Layout.css';
 import NavBar from './NavBar';
-import MovieDisplay from './component/MovieDisplay';
+import MovieDisplay from '../component/MovieDisplay';
 import Footer from './Footer';
 import { Outlet, Link } from 'react-router-dom';
 

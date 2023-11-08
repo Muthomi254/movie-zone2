@@ -1,4 +1,4 @@
-// App.js
+// Ensure proper imports
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
@@ -12,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />} />
         <Route path="/watchlist" element={<WatchList />} />
-        <Route path="/editmovies" element={<EditMovies />} />
+        {/* <Route path="/editmovies" element={<EditMovies />} /> */}
         <Route path="*" element={<NoPages />} />
       </Routes>
     </BrowserRouter>

@@ -1,12 +1,11 @@
 // MovieDisplay.js
-
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
+import { Link } from 'react-router-dom';
 
 const MovieDisplay = ({ selectedCategory, searchTerm }) => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  // const dataUrl = 'http://localhost:4000/movies';
 
   useEffect(() => {
     fetch('http://localhost:4000/movies')
@@ -35,6 +34,7 @@ const MovieDisplay = ({ selectedCategory, searchTerm }) => {
 
   return (
     <div className="container py-5">
+      
       <h3>All Movies</h3>
       <div className="row row-cols-1 row-cols-md-5">
         {filteredMovies.map((movie) => (
@@ -42,6 +42,11 @@ const MovieDisplay = ({ selectedCategory, searchTerm }) => {
             <MovieCard movie={movie} />
           </div>
         ))}
+      </div>
+      <div>
+        {/* Add Link for navigation */}
+        <Link to="/editmovies">Edit Movies</Link>
+        <Link to="/watchlist">Watch List</Link>
       </div>
     </div>
   );

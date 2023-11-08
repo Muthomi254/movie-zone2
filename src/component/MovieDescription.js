@@ -1,4 +1,3 @@
-
 // MovieDescription.js
 import React from 'react';
 
@@ -70,8 +69,8 @@ const MovieDescription = ({ movie, show, onHide }) => {
                     {movie.Director}
                   </p>
                   <p>
-                    <span className="fw-bolder">Stars: </span>{movie.Star1},
-                    {movie.Star2}, {movie.Star3}, {movie.Star4}
+                    <span className="fw-bolder">Stars: </span>
+                    {movie.Star1},{movie.Star2}, {movie.Star3}, {movie.Star4}
                   </p>
                   <p>
                     <span className="fw-bolder">No of Votes:</span>
