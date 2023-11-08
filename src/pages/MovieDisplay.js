@@ -1,7 +1,7 @@
 // MovieDisplay.js
 
 import React, { useState, useEffect } from 'react';
-import MovieCard from './MovieCard';
+import MovieCard from '../component/MovieCard';
 
 const MovieDisplay = ({ selectedCategory, searchTerm }) => {
   const [movies, setMovies] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import NavBar from './component/NavBar';
-import MovieDisplay from './component/MovieDisplay';
+import MovieDisplay from './pages/MovieDisplay';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
