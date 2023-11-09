@@ -1,9 +1,9 @@
-// MovieNavbar.js
+// NavBar.js
 import React, { useState } from 'react';
 import Categories from '../component/Categories';
 import { Link } from 'react-router-dom';
 
-const MovieNavbar = ({ onSelectCategory, onSearch }) => {
+const NavBar = ({ onSelectCategory, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
@@ -76,4 +76,4 @@ const MovieNavbar = ({ onSelectCategory, onSearch }) => {
   );
 };
 
-export default MovieNavbar;
+export default NavBar;
