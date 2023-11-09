@@ -1,9 +1,16 @@
 // MovieCard.js
 import React, { useState } from 'react';
 import MovieDescription from './MovieDescription';
-import DeleteMovies from './DeleteMovies';
 
-const MovieCard = ({ movie, onDelete, showDeleteButton }) => {
+const MovieCard = ({
+  movie,
+  onWatchLater,
+  onDelete,
+  onRemoveFromWatchList,
+  showDeleteButton,
+  onEdit,
+  isWatchListPage, // Added isWatchListPage prop
+}) => {
   const [showDescription, setShowDescription] = useState(false);
 
   const handleCardClick = () => {
@@ -16,7 +23,11 @@ const MovieCard = ({ movie, onDelete, showDeleteButton }) => {
 
   return (
     <>
-      <div className="card" style={{ height: '100%', cursor: 'pointer' }}>
+      <div
+        className="card"
+        style={{ height: '100%', cursor: 'pointer' }}
+        onClick={handleCardClick}
+      >
         <img
           src={movie.Poster_Link}
           className="card-img-top"
@@ -34,10 +45,37 @@ const MovieCard = ({ movie, onDelete, showDeleteButton }) => {
           {showDeleteButton && (
             <button
               type="button"
-              className="btn btn-outline-danger"
+              className="btn btn-outline-danger mx-2"
               onClick={() => onDelete(movie.Series_Title)}
             >
               Delete
+            </button>
+          )}
+          {!showDeleteButton && !isWatchListPage && (
+            <button
+              type="button"
+              className="btn btn-outline-primary mx-2"
+              onClick={() => onWatchLater(movie)}
+            >
+              Watch Later
+            </button>
+          )}
+          {!showDeleteButton && isWatchListPage && (
+            <button
+              type="button"
+              className="btn btn-outline-danger mx-2"
+              onClick={() => onRemoveFromWatchList(movie)}
+            >
+              Remove from Watch List
+            </button>
+          )}
+          {onEdit && (
+            <button
+              type="button"
+              className="btn btn-outline-secondary mx-2"
+              onClick={() => onEdit(movie)}
+            >
+              Edit
             </button>
           )}
         </div>

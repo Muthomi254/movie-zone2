@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AddMovies from '../component/AddMovies';
 import UpdateMovies from '../component/UpdateMovies';
 import DeleteMovies from '../component/DeleteMovies';
-import MovieCard from '../component/MovieCard'; // Import the modified MovieCard
+import MovieCard from '../component/MovieCard';
 import NavBar from '../layout/NavBar';
 
 const EditMovies = () => {
@@ -47,9 +47,25 @@ const EditMovies = () => {
     setSearchTerm(term);
   };
 
+  const handleWatchLater = (movie) => {
+    // Update the Watch_list status on the server
+    fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ Watch_list: true }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Assuming the server returns the updated movie
+        handleUpdate(movie.Series_Title, data);
+      })
+      .catch((error) => console.error('Error updating watch list:', error));
+  };
+
   return (
     <div>
-      
       <NavBar onSearch={handleSearch} />
 
       <div className="container">
@@ -82,8 +98,10 @@ const EditMovies = () => {
               <div key={movie.Series_Title} className="col mb-4">
                 <MovieCard
                   movie={movie}
+                  onWatchLater={handleWatchLater}
                   onDelete={handleDelete}
                   showDeleteButton={true}
+                  onEdit={handleEdit} // Pass the onEdit function to MovieCard
                 />
               </div>
             ))}

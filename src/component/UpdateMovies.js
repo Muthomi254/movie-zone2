@@ -28,7 +28,6 @@ const UpdateMovies = ({ movie, onUpdate }) => {
   };
 
   const handleUpdate = () => {
-    // Use fetch or your preferred method to update the movie on the server
     fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
       method: 'PUT',
       headers: {
@@ -38,7 +37,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        onUpdate(movie.Series_Title, data); // Assuming the server returns the updated movie
+        onUpdate(movie.Series_Title, data);
       })
       .catch((error) => console.error('Error updating movie:', error));
   };
@@ -253,8 +252,6 @@ const UpdateMovies = ({ movie, onUpdate }) => {
           </div>
         </div>
       </div>
-
-      {/* Add more rows if needed */}
 
       <button
         type="button"

@@ -32,18 +32,21 @@ const MovieDisplay = ({ selectedCategory, searchTerm }) => {
     setFilteredMovies(filtered);
   }, [searchTerm, movies]);
 
+  const handleWatchLater = (movie) => {
+    // Implement the logic to add the movie to the watch list
+    // You can make a fetch request to update the Watch_list status
+  };
+
   return (
     <div className="container py-5">
-      
       <h3>All Movies</h3>
       <div className="row row-cols-1 row-cols-md-5">
         {filteredMovies.map((movie) => (
           <div key={movie.Series_Title} className="col mb-4">
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} onWatchLater={handleWatchLater} />
           </div>
         ))}
       </div>
-     
     </div>
   );
 };
