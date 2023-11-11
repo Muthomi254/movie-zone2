@@ -1,42 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UpdateMovies = ({ movie, onUpdate }) => {
-  const [formData, setFormData] = useState({
-    Poster_Link: movie.Poster_Link,
-    Series_Title: movie.Series_Title,
-    Released_Year: movie.Released_Year,
-    Certificate: movie.Certificate,
-    Runtime: movie.Runtime,
-    Genre: movie.Genre,
-    IMDB_Rating: movie.IMDB_Rating,
-    Overview: movie.Overview,
-    Meta_score: movie.Meta_score,
-    Director: movie.Director,
-    Star1: movie.Star1,
-    Star2: movie.Star2,
-    Star3: movie.Star3,
-    Star4: movie.Star4,
-    No_of_Votes: movie.No_of_Votes,
-    Gross: movie.Gross,
-  });
+  const [updatedMovie, setUpdatedMovie] = useState({ ...movie });
+
+  useEffect(() => {
+    setUpdatedMovie({ ...movie });
+  }, [movie]);
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setUpdatedMovie((prevMovie) => ({
+      ...prevMovie,
+      [name]: value,
+    }));
   };
 
   const handleUpdate = () => {
+    // Assume you have an API endpoint for updating movies
     fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(updatedMovie),
     })
       .then((response) => response.json())
       .then((data) => {
+        // Assuming the server returns the updated movie
         onUpdate(movie.Series_Title, data);
       })
       .catch((error) => console.error('Error updating movie:', error));
@@ -46,7 +36,6 @@ const UpdateMovies = ({ movie, onUpdate }) => {
     <div className="container mt-4">
       <h3>Update Movie</h3>
       <div className="row">
-        {/* Row 1 */}
         <div className="col-md-3">
           <div className="form-group">
             <label>Poster Link:</label>
@@ -54,7 +43,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Poster_Link"
-              value={formData.Poster_Link}
+              value={updatedMovie.Poster_Link}
               onChange={handleInputChange}
             />
           </div>
@@ -66,7 +55,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Series_Title"
-              value={formData.Series_Title}
+              value={updatedMovie.Series_Title}
               onChange={handleInputChange}
             />
           </div>
@@ -78,7 +67,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Released_Year"
-              value={formData.Released_Year}
+              value={updatedMovie.Released_Year}
               onChange={handleInputChange}
             />
           </div>
@@ -90,7 +79,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Certificate"
-              value={formData.Certificate}
+              value={updatedMovie.Certificate}
               onChange={handleInputChange}
             />
           </div>
@@ -106,7 +95,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Runtime"
-              value={formData.Runtime}
+              value={updatedMovie.Runtime}
               onChange={handleInputChange}
             />
           </div>
@@ -115,10 +104,10 @@ const UpdateMovies = ({ movie, onUpdate }) => {
           <div className="form-group">
             <label>Genre:</label>
             <input
-              type="text"
+              type="sort"
               className="form-control"
               name="Genre"
-              value={formData.Genre}
+              value={updatedMovie.Genre}
               onChange={handleInputChange}
             />
           </div>
@@ -130,7 +119,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="IMDB_Rating"
-              value={formData.IMDB_Rating}
+              value={updatedMovie.IMDB_Rating}
               onChange={handleInputChange}
             />
           </div>
@@ -142,7 +131,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Overview"
-              value={formData.Overview}
+              value={updatedMovie.Overview}
               onChange={handleInputChange}
             />
           </div>
@@ -158,7 +147,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Meta_score"
-              value={formData.Meta_score}
+              value={updatedMovie.Meta_score}
               onChange={handleInputChange}
             />
           </div>
@@ -170,7 +159,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Director"
-              value={formData.Director}
+              value={updatedMovie.Director}
               onChange={handleInputChange}
             />
           </div>
@@ -182,7 +171,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Star1"
-              value={formData.Star1}
+              value={updatedMovie.Star1}
               onChange={handleInputChange}
             />
           </div>
@@ -194,7 +183,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Star2"
-              value={formData.Star2}
+              value={updatedMovie.Star2}
               onChange={handleInputChange}
             />
           </div>
@@ -210,7 +199,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Star3"
-              value={formData.Star3}
+              value={updatedMovie.Star3}
               onChange={handleInputChange}
             />
           </div>
@@ -222,7 +211,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Star4"
-              value={formData.Star4}
+              value={updatedMovie.Star4}
               onChange={handleInputChange}
             />
           </div>
@@ -234,7 +223,7 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="No_of_Votes"
-              value={formData.No_of_Votes}
+              value={updatedMovie.No_of_Votes}
               onChange={handleInputChange}
             />
           </div>
@@ -246,20 +235,24 @@ const UpdateMovies = ({ movie, onUpdate }) => {
               type="text"
               className="form-control"
               name="Gross"
-              value={formData.Gross}
+              value={updatedMovie.Gross}
               onChange={handleInputChange}
             />
           </div>
         </div>
       </div>
 
-      <button
-        type="button"
-        className="btn btn-outline-primary mt-3"
-        onClick={handleUpdate}
-      >
-        Update Movie
-      </button>
+      {/* Row 5 */}
+      <div className="row">
+        {/* Add other form inputs for updating movie properties */}
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleUpdate}
+        >
+          Update Movie
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// WatchList.js
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../component/MovieCard';
 import NavBar from '../layout/NavBar';

@@ -1,16 +1,18 @@
 // MovieCard.js
 import React, { useState } from 'react';
 import MovieDescription from './MovieDescription';
-
+import AddToWatchList from './AddToWatchList';
 const MovieCard = ({
   movie,
-  onWatchLater,
-  onDelete,
+  handleDelete,
   onRemoveFromWatchList,
   showDeleteButton,
-  onEdit,
-  isWatchListPage, // Added isWatchListPage prop
+  handleEdit,
+  isWatchListPage,
+  onWatchLater,
+  isEditPage,
 }) => {
+  // console.log('Rada', isEditPage, typeof handleDelete, handleDelete);
   const [showDescription, setShowDescription] = useState(false);
 
   const handleCardClick = () => {
@@ -26,7 +28,7 @@ const MovieCard = ({
       <div
         className="card"
         style={{ height: '100%', cursor: 'pointer' }}
-        onClick={handleCardClick}
+        // onClick={handleCardClick}
       >
         <img
           src={movie.Poster_Link}
@@ -42,23 +44,18 @@ const MovieCard = ({
           <p className="card-text">
             <span className="fw-bold">IMDB Rating:</span> {movie.IMDB_Rating}
           </p>
-          {showDeleteButton && (
+          
+          {showDeleteButton && isEditPage && (
             <button
               type="button"
               className="btn btn-outline-danger mx-2"
-              onClick={() => onDelete(movie.Series_Title)}
+              onClick={() => handleDelete(movie.Series_Title)}
             >
               Delete
             </button>
           )}
           {!showDeleteButton && !isWatchListPage && (
-            <button
-              type="button"
-              className="btn btn-outline-primary mx-2"
-              onClick={() => onWatchLater(movie)}
-            >
-              Watch Later
-            </button>
+            <AddToWatchList movie={movie} onAddToWatchList={onWatchLater} />
           )}
           {!showDeleteButton && isWatchListPage && (
             <button
@@ -69,11 +66,11 @@ const MovieCard = ({
               Remove from Watch List
             </button>
           )}
-          {onEdit && (
+          {handleEdit && (
             <button
               type="button"
               className="btn btn-outline-secondary mx-2"
-              onClick={() => onEdit(movie)}
+              onClick={() => handleEdit(movie)}
             >
               Edit
             </button>

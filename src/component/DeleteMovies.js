@@ -1,9 +1,5 @@
-// DeleteMovies.js
-import React, { useState } from 'react';
-
 const DeleteMovies = ({ movie, onDelete }) => {
   const handleDelete = () => {
-    // Use fetch or your preferred method to delete the movie on the server
     fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
       method: 'DELETE',
     })

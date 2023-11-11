@@ -1,7 +1,21 @@
+// Categories.js
 import React, { useState } from 'react';
 
 const Categories = ({ onSelectCategory }) => {
-  const categories = ['All', 'Action', 'Adventure', 'Drama', 'Crime', 'Biography', 'Western', 'Comedy', 'Animation', 'Horror', 'Mystery', 'Sci-fi' ];
+  const categories = [
+    'All',
+    'Action',
+    'Adventure',
+    'Drama',
+    'Crime',
+    'Biography',
+    'Western',
+    'Comedy',
+    'Animation',
+    'Horror',
+    'Mystery',
+    'Sci-fi',
+  ];
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const handleCategorySelect = (category) => {
@@ -19,7 +33,6 @@ const Categories = ({ onSelectCategory }) => {
         aria-expanded="false"
       >
         <p className="text-light col-md-6 d-flex-row">Genres :</p>
-
         {selectedCategory}
       </button>
       <ul className="dropdown-menu" aria-labelledby="categoriesDropdown">

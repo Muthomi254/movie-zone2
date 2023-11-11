@@ -1,8 +1,7 @@
-// AddMovieForm.js
 import React, { useState } from 'react';
 
-const AddMovieForm = ({ onAdd }) => {
-  const [formData, setFormData] = useState({
+const AddMovies = ({ onAdd }) => {
+  const initialFormData = {
     Poster_Link: '',
     Series_Title: '',
     Released_Year: '',
@@ -19,45 +18,39 @@ const AddMovieForm = ({ onAdd }) => {
     Star4: '',
     No_of_Votes: '',
     Gross: '',
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
-  
-  const handleAdd = () => {
-    // Clean the Poster_Link field by removing newline characters
-    const cleanedFormData = {
-      ...formData,
-      Poster_Link: formData.Poster_Link.replace(/\n/g, ''),
-    };
 
-    // Use fetch or your preferred method to add the movie on the server
+  const handleAdd = () => {
+    // Assume you have an API endpoint for adding movies
     fetch('http://localhost:4000/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cleanedFormData),
+      body: JSON.stringify(formData),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        onAdd(data); // Assuming the server returns the added movie
+        // Assuming the server returns the added movie
+        onAdd(data);
+        setFormData(initialFormData); // Reset the form data after adding
       })
       .catch((error) => console.error('Error adding movie:', error));
   };
 
   return (
-    <div className="container">
-      <h3 className="mb-4">Add Movie</h3>
+    <div className="container mt-4">
+      <h3>Add Movie</h3>
       <div className="row">
         {/* Row 1 */}
         <div className="col-md-3">
@@ -266,17 +259,11 @@ const AddMovieForm = ({ onAdd }) => {
         </div>
       </div>
 
-      {/* Add more rows if needed */}
-
-      <button
-        type="button"
-        className="btn btn-outline-success mt-3"
-        onClick={handleAdd}
-      >
+      <button type="button" className="btn btn-primary" onClick={handleAdd}>
         Add Movie
       </button>
     </div>
   );
 };
 
-export default AddMovieForm;
+export default AddMovies;

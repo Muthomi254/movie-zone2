@@ -5,14 +5,16 @@ import UpdateMovies from '../component/UpdateMovies';
 import DeleteMovies from '../component/DeleteMovies';
 import MovieCard from '../component/MovieCard';
 import NavBar from '../layout/NavBar';
+import { Link } from 'react-router-dom';
 
 const EditMovies = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const showDeleteButton = true;
   const [searchTerm, setSearchTerm] = useState('');
+  const isEditPage = true;
 
   useEffect(() => {
-    // Fetch movies from the server
     fetch('http://localhost:4000/movies')
       .then((response) => response.json())
       .then((data) => setMovies(data))
@@ -20,23 +22,51 @@ const EditMovies = () => {
   }, []);
 
   const handleAdd = (newMovie) => {
-    setMovies([...movies, newMovie]);
+    fetch('http://localhost:4000/movies', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies([...movies, data]);
+      })
+      .catch((error) => console.error('Error adding movie:', error));
   };
 
-  const handleUpdate = (title, updatedMovie) => {
-    setMovies((prevMovies) =>
-      prevMovies.map((movie) =>
-        movie.Series_Title === title ? updatedMovie : movie
-      )
-    );
-    setSelectedMovie(null);
+  const handleUpdate = (movie, updatedMovie) => {
+    fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedMovie),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies((prevMovies) =>
+          prevMovies.map((prevMovie) =>
+            prevMovie.Series_Title === movie.Series_Title ? data : prevMovie
+          )
+        );
+        setSelectedMovie(null);
+      })
+      .catch((error) => console.error('Error updating movie:', error));
   };
 
-  const handleDelete = (title) => {
-    setMovies((prevMovies) =>
-      prevMovies.filter((movie) => movie.Series_Title !== title)
-    );
-    setSelectedMovie(null);
+  const handleDelete = (movie) => {
+
+    console.log('Hey', movie);
+    fetch(`http://localhost:4000/movies/${movie}`, {
+      method: 'DELETE',
+    })
+      .then((data) => {
+        console.log('Delete', data)
+      })
+      .catch((error) => console.error('Error deleting movie:', error));
+
   };
 
   const handleEdit = (movie) => {
@@ -48,7 +78,6 @@ const EditMovies = () => {
   };
 
   const handleWatchLater = (movie) => {
-    // Update the Watch_list status on the server
     fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
       method: 'PATCH',
       headers: {
@@ -58,8 +87,7 @@ const EditMovies = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Assuming the server returns the updated movie
-        handleUpdate(movie.Series_Title, data);
+        handleUpdate(movie, data);
       })
       .catch((error) => console.error('Error updating watch list:', error));
   };
@@ -73,7 +101,7 @@ const EditMovies = () => {
           <div className="col-md-6 py-5">
             <AddMovies onAdd={handleAdd} />
           </div>
-          <div className="col-md-6 py-5">
+          {/* <div className="col-md-6 py-5">
             {selectedMovie ? (
               <>
                 <UpdateMovies movie={selectedMovie} onUpdate={handleUpdate} />
@@ -82,10 +110,9 @@ const EditMovies = () => {
             ) : (
               <div>
                 <h3>Select a movie to edit or delete.</h3>
-                <DeleteMovies />
               </div>
             )}
-          </div>
+          </div> */}
         </div>
         <div className="row row-cols-1 row-cols-md-4">
           {movies
@@ -96,13 +123,16 @@ const EditMovies = () => {
             )
             .map((movie) => (
               <div key={movie.Series_Title} className="col mb-4">
+                {/* <Link to={`/movies/${movie.Series_Title}`}> */}
                 <MovieCard
                   movie={movie}
                   onWatchLater={handleWatchLater}
-                  onDelete={handleDelete}
-                  showDeleteButton={true}
-                  onEdit={handleEdit} // Pass the onEdit function to MovieCard
+                  handleDelete={handleDelete}
+                  showDeleteButton={showDeleteButton}
+                  handleEdit={handleEdit}
+                  isEditPage={isEditPage}
                 />
+                {/* </Link> */}
               </div>
             ))}
         </div>
