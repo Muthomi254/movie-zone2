@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import MovieDescription from '../MovieDescription';
 import AddToWatchList from '../AddToWatchList';
 import HomePageActions from './HomePageActions';
+import EditPageActions from './EditPageActions';
 
 const MovieCard = ({
   movie,
-  handleDelete,
-  onRemoveFromWatchList,
-  showDeleteButton,
-  handleEdit,
-  isWatchListPage,
-  onWatchLater,
   isEditPage,
   isHomePage,
 }) => {
-  console.log('Home', isHomePage);
   const [showDescription, setShowDescription] = useState(false);
 
   const handleViewDescription = () => {
@@ -39,20 +33,30 @@ const MovieCard = ({
             <span className="fw-bold">Year:</span> {movie.year}
           </p>
         </div>
-        <div className="card-footer">
-          {isHomePage && (
+        {isHomePage && (
+          <div className="card-footer">
             <HomePageActions
               movie={movie}
               handleViewDescription={handleViewDescription}
             />
-          )}
-        </div>
+          </div>
+        )}
+
+        {isEditPage && (
+          <div className="card-footer">
+            <EditPageActions
+              handleViewDescription={handleViewDescription}
+              movie={movie}
+            />
+          </div>
+        )}
       </div>
 
       <MovieDescription
         movie={movie}
         show={showDescription}
         onHide={handleCloseDescription}
+        isHomePage={isHomePage}
       />
     </>
   );
