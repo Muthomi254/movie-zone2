@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddMovie = ({ onAdd }) => {
+const AddMovie = ({ onAdd, movie }) => {
   const initialFormData = {
     Poster_Link: '',
     title: '',

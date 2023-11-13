@@ -57,9 +57,17 @@ The MovieZone application is built using the following technologies and librarie
     Bootstrap: Employed for styling and creating a responsive and visually appealing user interface.
     JSX (JavaScript XML): A syntax extension for JavaScript recommended for use with React to describe what the UI should look like.
 
-Getting Started
+## Getting Started
 
-To run the MovieZone application locally and explore its features, follow these steps:
+### Frontend link
+
+https://65529a4046c3f82f9f4caacb--clever-taffy-5a83e4.netlify.app/
+
+### Backend link
+
+https://movie-zone2-react.onrender.com/api/movies
+
+<!-- To run the MovieZone application locally and explore its features, follow these steps:
 
     Clone the Repository:
 
@@ -80,7 +88,7 @@ sql
 
     npm start
 
-    The application will be accessible at http://localhost:3000 in your web browser.
+    The application will be accessible at http://localhost:3000 in your web browser. -->
 
 ## Usage
 
