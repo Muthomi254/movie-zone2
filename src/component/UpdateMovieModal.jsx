@@ -10,6 +10,7 @@ export default function UpdateMovieModal({
     ? { display: 'block' }
     : { display: 'none' };
 
+
   const handleDeleteMovie = (movieId) => {
     console.log('DELETE', movieId);
     fetch(`http://localhost:4000/movies/${movieId}`, {
@@ -44,13 +45,11 @@ export default function UpdateMovieModal({
           <div class="modal-body">
             <UpdateMovies
               handleCloseUpdateMovieModal={handleCloseUpdateMovieModal}
+              movie={movie}
             />
           </div>
           <div className="modal-footer">
             <div className="row">
-              <div className="col-sm-6">
-                <button className="btn btn-info">Update</button>
-              </div>
               <div className="col-sm-6">
                 <button
                   className="btn btn-danger"

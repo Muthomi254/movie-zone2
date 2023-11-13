@@ -12,8 +12,6 @@ const MovieDescription = ({ movie, show, onHide, isHomePage, isEditPage }) => {
     if (movie.genres != []) {
       setGenres(movie.genres);
     }
-
-    console.log(isHomePage);
   }, [movie.genres]);
 
   const handleOpenUpdateMovieModal = () => {

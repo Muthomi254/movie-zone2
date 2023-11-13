@@ -27,7 +27,7 @@ const EditMovies = () => {
     };
 
     fetchAllMovies();
-  }, [movies]);
+  }, []);
 
   return (
     <Layout>
