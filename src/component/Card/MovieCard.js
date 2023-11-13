@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MovieDescription from '../MovieDescription';
-import AddToWatchList from '../AddToWatchList';
+// import AddToWatchList from '../AddToWatchList';
 import HomePageActions from './HomePageActions';
 import EditPageActions from './EditPageActions';
 
@@ -8,6 +8,8 @@ const MovieCard = ({
   movie,
   isEditPage,
   isHomePage,
+  isWatchListPage,
+  handleRemoveFromWatchList,
 }) => {
   const [showDescription, setShowDescription] = useState(false);
 
@@ -48,6 +50,17 @@ const MovieCard = ({
               handleViewDescription={handleViewDescription}
               movie={movie}
             />
+          </div>
+        )}
+
+        {isWatchListPage && (
+          <div className="card-footer">
+            <button
+              className="btn btn-danger"
+              onClick={() => handleRemoveFromWatchList(movie.id)}
+            >
+              Remove from Watchlist
+            </button>
           </div>
         )}
       </div>

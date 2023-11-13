@@ -9,7 +9,18 @@ export default function UpdateMovieModal({
   const modalStyle = showUpdateMovieModal
     ? { display: 'block' }
     : { display: 'none' };
-  console.log('yof', movie, showUpdateMovieModal, handleCloseUpdateMovieModal);
+
+  const handleDeleteMovie = (movieId) => {
+    console.log('DELETE', movieId);
+    fetch(`http://localhost:4000/movies/${movieId}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('DELETED', data);
+      })
+      .catch((error) => console.error('Error deleting movie:', error));
+  };
   return (
     <div
       className={`modal fade${showUpdateMovieModal ? ' show' : ''}`}
@@ -41,7 +52,12 @@ export default function UpdateMovieModal({
                 <button className="btn btn-info">Update</button>
               </div>
               <div className="col-sm-6">
-                <button className="btn btn-danger">Delete</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDeleteMovie(movie.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>

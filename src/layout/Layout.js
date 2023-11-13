@@ -1,6 +1,5 @@
 // Layout.js
 import React from 'react';
-import Footer from './Footer';
 import NavBar from './NavBar';
 import { Outlet } from 'react-router-dom';
 
@@ -15,7 +14,6 @@ function Layout({ children, onSearch, onSelectCategory }) {
       >
         {children}
       </div>
-      {/* <Footer /> */}
       <Outlet />
     </div>
   );

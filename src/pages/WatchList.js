@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import MovieCard from '../component/Card/MovieCard';
 import Layout from '../layout/Layout';
 
-const WatchList =() => {
-  const [watchList, setWatchList] = useState([]);
+const WatchList = () => {
+  const [filteredWatchList, setFilteredWatchList] = useState([]);
+
+  const isWatchListPage = true;
   useEffect(() => {
     const fetchWatchMovies = async () => {
       try {
         const response = await fetch('http://localhost:4000/movies');
         if (response.ok) {
           const data = await response.json();
-          setWatchList(data);
-          console.log("hey", data)
+          const filtered = data.filter((movie) => movie.watch_list === true);
+
+          setFilteredWatchList(filtered);
         }
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -20,49 +23,40 @@ const WatchList =() => {
     fetchWatchMovies();
   }, []);
 
-  const handleRemoveFromWatchList = (movie) => {
-    // Update the Watch_list status on the server
-    fetch(`http://localhost:4000/movies/${movie.Series_Title}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ Watch_list: false }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Assuming the server returns the updated movie
-        setWatchList((prevWatchList) =>
-          prevWatchList.filter(
-            (item) => item.Series_Title !== movie.Series_Title
-          )
-        );
-      })
-      .catch((error) => console.error('Error updating watch list:', error));
-  };
+  const handleRemoveFromWatchList = async (movieId) => {
+    try {
+      const response = fetch(`http://localhost:4000/movies/${movieId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ watch_list: false }),
+      });
 
-  const filteredWatchList = watchList.filter(
-    (movie) => {
-      // console.log(movie)
-      return movie.watch_list === true
+      if(response.ok){
+        const data = await response.json();
+        console.log('Success remove',data)
+      }
+    } catch (errors) {
+      console.error(`Unable to remove movie of ID${movieId} from watch list`);
     }
-  );
-  console.log('Filtered', filteredWatchList);
+  };
 
   return (
     <Layout>
-      <div className="contaiiner ">
-        {filteredWatchList.map((watchedMovie) => (
-          <div key={watchedMovie.Series_Title} className="row ">
-            <div className="col-md-3">
+      <div className="row mt-3 mb-3">
+        <h2 className="text-center">Watch List</h2>
+        <div className="row">
+          {filteredWatchList.map((movie) => (
+            <div key={movie.id} className="col-md-3 mb-5">
               <MovieCard
-                movie={watchedMovie}
-                onRemoveFromWatchList={handleRemoveFromWatchList}
-                isWatchListPage={true} // Pass the isWatchListPage prop
+                movie={movie}
+                isWatchListPage={isWatchListPage}
+                handleRemoveFromWatchList={handleRemoveFromWatchList}
               />
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Layout>
   );

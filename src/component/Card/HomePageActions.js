@@ -31,12 +31,16 @@ export default function HomePageActions({ movie, handleViewDescription }) {
         </button>
       </div>
       <div className="col">
-        <button
-          className="btn btn-outline-primary"
-          onClick={() => handleWatchLater(movie)}
-        >
-          Watch later
-        </button>
+        {movie.watch_list ? (
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => handleWatchLater(movie)}
+          >
+            Watch later
+          </button>
+        ) : (
+          'Added to watchList'
+        )}
       </div>
     </div>
   );
