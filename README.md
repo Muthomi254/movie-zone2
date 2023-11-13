@@ -61,8 +61,7 @@ The MovieZone application is built using the following technologies and librarie
 
   ### Frontend link
 
-https://65529a4046c3f82f9f4caacb--clever-taffy-5a83e4.netlify.app/
-
+https://main--unique-panda-3306ad.netlify.app/
   ### Backend link
 
 https://movie-zone2-react.onrender.com/api/movies
