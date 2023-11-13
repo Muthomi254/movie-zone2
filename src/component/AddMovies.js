@@ -24,7 +24,7 @@ const AddMovie = ({ onAdd }) => {
 
   const handleAdd = () => {
     // Assume you have an API endpoint for adding movies
-    fetch('http://localhost:4000/movies', {
+    fetch('https://movie-zone2-react.onrender.com/api/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

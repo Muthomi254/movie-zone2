@@ -9,7 +9,9 @@ const HomePage = () => {
   useEffect(() => {
     const fetchAllMovies = async () => {
       try {
-        const response = await fetch('http://localhost:4000/movies');
+        const response = await fetch(
+          'https://movie-zone2-react.onrender.com/api/movies'
+        );
         if (response.ok) {
           const data = await response.json();
           setMovies(data);

@@ -9,7 +9,9 @@ const WatchList = () => {
   useEffect(() => {
     const fetchWatchMovies = async () => {
       try {
-        const response = await fetch('http://localhost:4000/movies');
+        const response = await fetch(
+          'https://movie-zone2-react.onrender.com/api/movies'
+        );
         if (response.ok) {
           const data = await response.json();
           const filtered = data.filter((movie) => movie.watch_list === true);
@@ -25,18 +27,22 @@ const WatchList = () => {
 
   const handleRemoveFromWatchList = async (movieId) => {
     try {
-      const response = fetch(`http://localhost:4000/movies/${movieId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ watch_list: false }),
-      });
+      const response = fetch(
+        `https://movie-zone2-react.onrender.com/api/movies/${movieId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ watch_list: false }),
+        }
+      );
 
       if(response.ok){
         const data = await response.json();
         console.log('Success remove',data)
       }
+      
     } catch (errors) {
       console.error(`Unable to remove movie of ID${movieId} from watch list`);
     }

@@ -13,7 +13,7 @@ export default function UpdateMovieModal({
 
   const handleDeleteMovie = (movieId) => {
     console.log('DELETE', movieId);
-    fetch(`http://localhost:4000/movies/${movieId}`, {
+    fetch(`https://movie-zone2-react.onrender.com/api/movies/${movieId}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())

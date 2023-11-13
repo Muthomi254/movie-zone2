@@ -10,13 +10,16 @@ const UpdateMovies = ({ movie, handleCloseUpdateMovieModal }) => {
   const handleUpdateMovie = async () => {
     try {
       
-      const response = await fetch(`http://localhost:4000/movies/${updatedMovie.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedMovie),
-      });
+      const response = await fetch(
+        `https://movie-zone2-react.onrender.com/api/movies/${updatedMovie.id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedMovie),
+        }
+      );
       if (response.ok){
       const data = await response.json();
       handleCloseUpdateMovieModal();
