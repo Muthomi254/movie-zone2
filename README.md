@@ -59,11 +59,11 @@ The MovieZone application is built using the following technologies and librarie
 
 ## Getting Started
 
-### Frontend link
+  ### Frontend link
 
 https://65529a4046c3f82f9f4caacb--clever-taffy-5a83e4.netlify.app/
 
-### Backend link
+  ### Backend link
 
 https://movie-zone2-react.onrender.com/api/movies
 
@@ -100,7 +100,9 @@ sql
 
 Feel free to customize and extend the application based on your specific use case!
 
+## Known Bugs
 
+One needs to refreshpage so as to see changes.
 ## Contribution
 
 If you'd like to contribute to the MovieZone project, please follow these guidelines:

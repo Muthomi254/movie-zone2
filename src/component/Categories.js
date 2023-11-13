@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Categories = () => {
-  const categories = [
+const Categories = ({ onSelectGenre }) => {
+  const genres = [
     'Action',
     'Adventure',
     'Drama',
@@ -27,10 +27,14 @@ const Categories = () => {
         Genres
       </a>
       <ul className="dropdown-menu">
-        {categories.map((category) => (
-          <li key={category.id}>
-            <a className="dropdown-item" href="#">
-              {category}
+        {genres.map((genre) => (
+          <li key={genre}>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() => onSelectGenre(genre)}
+            >
+              {genre}
             </a>
           </li>
         ))}
