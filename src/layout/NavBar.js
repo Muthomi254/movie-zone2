@@ -8,7 +8,7 @@ export default function NavBar() {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <Link class="navbar-brand" to="/">
-          MovieZone
+          Movie<span className='text-warning fw-bolder'>Zone</span>
         </Link>
         <button
           class="navbar-toggler"

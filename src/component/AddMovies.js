@@ -1,15 +1,17 @@
+
+
 import React, { useState } from 'react';
 
-const AddMovie = ({ onAdd, movie }) => {
+const AddMovie = ({ onAdd }) => {
   const initialFormData = {
-    Poster_Link: '',
+    posterUrl: '',
     title: '',
     year: '',
     actors: '',
     runtime: '',
     director: '',
     genres: '',
-    
+    plot: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -42,7 +44,7 @@ const AddMovie = ({ onAdd, movie }) => {
 
   return (
     <div>
-      <h3 className="text-center">Update Movie ID: {movie.id}</h3>
+      <h3 className="text-center">Add Movie</h3>
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
@@ -142,7 +144,7 @@ const AddMovie = ({ onAdd, movie }) => {
         </div>
       </div>
 
-      <button type="button" className="btn btn-primary" onClick={handleAdd}>
+      <button type="button" className="btn btn-primary p-2 m-3" onClick={handleAdd}>
         Add Movie
       </button>
     </div>
