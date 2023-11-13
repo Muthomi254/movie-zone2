@@ -3,21 +3,13 @@ import React, { useState } from 'react';
 const AddMovie = ({ onAdd }) => {
   const initialFormData = {
     Poster_Link: '',
-    Series_Title: '',
-    Released_Year: '',
-    Certificate: '',
-    Runtime: '',
-    Genre: '',
-    IMDB_Rating: '',
-    Overview: '',
-    Meta_score: '',
-    Director: '',
-    Star1: '',
-    Star2: '',
-    Star3: '',
-    Star4: '',
-    No_of_Votes: '',
-    Gross: '',
+    title: '',
+    year: '',
+    actors: '',
+    runtime: '',
+    director: '',
+    genres: '',
+    
   };
 
   const [formData, setFormData] = useState(initialFormData);
