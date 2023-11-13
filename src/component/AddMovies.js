@@ -49,210 +49,101 @@ const AddMovie = ({ onAdd }) => {
   };
 
   return (
-    <div className="container mt-4">
-      <h3>Add Movie</h3>
+    <div>
+      <h3 className="text-center">Update Movie ID: {movie.id}</h3>
       <div className="row">
-        {/* Row 1 */}
-        <div className="col-md-3">
+        <div className="col-md-6">
+          <div className="form-group">
+            <label>Title:</label>
+            <input
+              className="form-control"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <label>Year:</label>
+            <input
+              className="form-control"
+              type="text"
+              name="year"
+              value={formData.year}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-12">
           <div className="form-group">
             <label>Poster Link:</label>
             <input
               type="text"
               className="form-control"
-              name="Poster_Link"
-              value={formData.Poster_Link}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Series Title:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Series_Title"
-              value={formData.Series_Title}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Released Year:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Released_Year"
-              value={formData.Released_Year}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Certificate:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Certificate"
-              value={formData.Certificate}
+              name="posterUrl"
+              value={formData.posterUrl}
               onChange={handleInputChange}
             />
           </div>
         </div>
       </div>
 
-      {/* Row 2 */}
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-6">
           <div className="form-group">
-            <label>Runtime:</label>
+            <label>RunTime:</label>
             <input
-              type="text"
               className="form-control"
-              name="Runtime"
-              value={formData.Runtime}
+              type="text"
+              name="runtime"
+              value={formData.runtime}
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Genre:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Genre"
-              value={formData.Genre}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>IMDB Rating:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="IMDB_Rating"
-              value={formData.IMDB_Rating}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Overview:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Overview"
-              value={formData.Overview}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Row 3 */}
-      <div className="row">
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Meta Score:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Meta_score"
-              value={formData.Meta_score}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
+        <div className="col-md-6">
           <div className="form-group">
             <label>Director:</label>
             <input
-              type="text"
               className="form-control"
-              name="Director"
-              value={formData.Director}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Star 1:</label>
-            <input
               type="text"
-              className="form-control"
-              name="Star1"
-              value={formData.Star1}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Star 2:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Star2"
-              value={formData.Star2}
+              name="director"
+              value={formData.director}
               onChange={handleInputChange}
             />
           </div>
         </div>
       </div>
 
-      {/* Row 4 */}
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-12">
           <div className="form-group">
-            <label>Star 3:</label>
+            <label>Genres:</label>
             <input
               type="text"
               className="form-control"
-              name="Star3"
-              value={formData.Star3}
+              name="genres"
+              value={formData.genres}
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <div className="col-md-3">
+      </div>
+
+      <div className="row">
+        <div className="col-md-12">
           <div className="form-group">
-            <label>Star 4:</label>
-            <input
+            <label>Plot:</label>
+            <textarea
               type="text"
               className="form-control"
-              name="Star4"
-              value={formData.Star4}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>No. of Votes:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="No_of_Votes"
-              value={formData.No_of_Votes}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group">
-            <label>Gross:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="Gross"
-              value={formData.Gross}
+              name="plot"
+              value={formData.plot}
               onChange={handleInputChange}
             />
           </div>
