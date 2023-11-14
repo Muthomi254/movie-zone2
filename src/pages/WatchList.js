@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../layout/Layout';
 import MovieCard from '../component/Card/MovieCard';
-import Categories from '../component/Categories';
+import Layout from '../layout/Layout';
 
 const WatchList = () => {
   const [filteredWatchList, setFilteredWatchList] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(null);
-  const isWatchListPage = true;
 
+  const isWatchListPage = true;
   useEffect(() => {
     const fetchWatchMovies = async () => {
       try {
@@ -27,16 +25,26 @@ const WatchList = () => {
     fetchWatchMovies();
   }, []);
 
-  const handleGenreClick = (genre) => {
-    setSelectedGenre(genre);
-  };
-
-  const filteredWatchListMovies = selectedGenre
-    ? filteredWatchList.filter((movie) => movie.genres.includes(selectedGenre))
-    : filteredWatchList;
-
   const handleRemoveFromWatchList = async (movieId) => {
-    // ... (previous code)
+    try {
+      const response = fetch(
+        `https://movie-zone2-react.onrender.com/api/movies/${movieId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ watch_list: false }),
+        }
+      );
+
+      if(response.ok){
+        const data = await response.json();
+        console.log('Success remove',data)
+      }
+    } catch (errors) {
+      console.error(`Unable to remove movie of ID${movieId} from watch list`);
+    }
   };
 
   return (
@@ -44,8 +52,7 @@ const WatchList = () => {
       <div className="row mt-3 mb-3">
         <h2 className="text-center">Watch List</h2>
         <div className="row">
-          <Categories onGenreClick={handleGenreClick} />
-          {filteredWatchListMovies.map((movie) => (
+          {filteredWatchList.map((movie) => (
             <div key={movie.id} className="col-md-3 mb-5">
               <MovieCard
                 movie={movie}

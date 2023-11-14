@@ -62,6 +62,8 @@ The MovieZone application is built using the following technologies and librarie
   ### Frontend link
 
 https://main--unique-panda-3306ad.netlify.app/
+
+
   ### Backend link
 
 https://movie-zone2-react.onrender.com/api/movies
@@ -123,4 +125,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 Email: dmunene202020@gmail.com
+
 Feel free to reach out for any further assistance or inquiries! 🎉🎬
