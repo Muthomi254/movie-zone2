@@ -103,7 +103,8 @@ Feel free to customize and extend the application based on your specific use cas
 
 ## Known Bugs
 
-One needs to refreshpage so as to see changes.
+There is a 3-4 seconds delay when loading the backend server.
+One needs to refresh page so as to see changes.
 ## Contribution
 
 If you'd like to contribute to the MovieZone project, please follow these guidelines:
